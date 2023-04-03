@@ -40,7 +40,7 @@ class SignUpScreen extends StatelessWidget {
                     CircleAvatar(
                       radius: 64,
                       backgroundImage: NetworkImage(profileImagePath),
-                      backgroundColor: Colors.black,
+                      backgroundColor: Colors.white,
                     ),
                     Positioned(
                         bottom: -10,
@@ -79,6 +79,7 @@ class SignUpScreen extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextInputField(
                     controller: _passwordController,
+                    obscureText: true,
                     labelText: "Password",
                     prefixIcon: Icons.lock,
                   ),
@@ -100,7 +101,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     child: const Center(
                       child: Text(
-                        "Login",
+                        "Register",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w700,

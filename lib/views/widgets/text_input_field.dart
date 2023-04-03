@@ -20,6 +20,7 @@ class TextInputField extends StatelessWidget {
     return TextField(
       controller: controller,
       obscureText: obscureText ?? false,
+      obscuringCharacter: "*",
       decoration: InputDecoration(
         labelText: labelText,
         prefixIcon: Icon(prefixIcon),
