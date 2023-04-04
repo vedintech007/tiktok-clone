@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants.dart';
+import 'package:tiktok_clone/views/widgets/circle_animation.dart';
 import 'package:tiktok_clone/views/widgets/video_player.dart';
 
 class VideoScreen extends StatelessWidget {
@@ -129,13 +130,18 @@ class VideoScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 7),
                                 const Text(
-                                  "",
+                                  "2",
                                   style: TextStyle(
                                     fontSize: 20,
                                     color: Colors.white,
                                   ),
                                 ),
                               ],
+                            ),
+
+                            //
+                            CircleAnimation(
+                              child: _buildMusicAlbum('profile photo'),
                             ),
                           ],
                         ),
@@ -172,6 +178,38 @@ class VideoScreen extends StatelessWidget {
                   image: NetworkImage(profilePhoto),
                   fit: BoxFit.cover,
                 ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _buildMusicAlbum(String profilePhoto) {
+    return SizedBox(
+      width: 60,
+      height: 60,
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(11),
+            height: 50,
+            width: 50,
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                colors: [
+                  Colors.grey,
+                  Colors.white,
+                ],
+              ),
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: const Image(
+                image: NetworkImage(""),
+                fit: BoxFit.cover,
               ),
             ),
           ),
