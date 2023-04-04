@@ -15,11 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: SafeArea(
-          child: pages[pageIndex],
-        ),
-      ),
+      body: pages[pageIndex],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: backgroundColor,
         type: BottomNavigationBarType.fixed,

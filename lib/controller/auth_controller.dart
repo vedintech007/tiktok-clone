@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/models/user.dart' as model;
 import 'package:tiktok_clone/views/screens/auth/login_screen.dart';
-import 'package:tiktok_clone/views/screens/home_screen.dart';
+import 'package:tiktok_clone/views/screens/home/home_screen.dart';
 
 class AuthController extends GetxController {
   // create an instance so we can call this directly anywhere
