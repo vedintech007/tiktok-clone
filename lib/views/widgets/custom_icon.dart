@@ -43,7 +43,7 @@ class CustomIcon extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(7),
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.add,
                 color: Colors.black,
                 size: 20,

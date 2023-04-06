@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,6 +22,7 @@ class AuthController extends GetxController {
 
   // _pickedImage is a private var, so we use this to be able to access the image file
   File? get profilePhoto => _pickedImage.value;
+  User get user => _user.value!;
 
   @override
   void onReady() {
@@ -101,10 +103,10 @@ class AuthController extends GetxController {
     try {
       if (email.isNotEmpty && password.isNotEmpty) {
         await firebaseAuth.signInWithEmailAndPassword(email: email, password: password).then((response) => {
-              print(response.user),
+              log(response.user.toString()),
             });
 
-        print("login successful");
+        log("login successful");
       } else {
         Get.snackbar("Error", "Fields cannot be empty.");
       }

@@ -8,7 +8,7 @@ import 'package:tiktok_clone/views/screens/home/add_video.dart';
 import 'package:tiktok_clone/views/screens/video_screen.dart';
 
 List pages = [
-  const VideoScreen(),
+  VideoScreen(),
   const Text("SearchScreen()"),
   const AddVideoScreen(),
   const Text('Messages Screen'),
