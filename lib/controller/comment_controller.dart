@@ -15,7 +15,21 @@ class CommentController extends GetxController {
     getComment();
   }
 
-  getComment() async {}
+  getComment() async {
+    _comments.bindStream(
+      firestore.collection("videos").doc(_postId).collection("comments").snapshots().map(
+        (QuerySnapshot query) {
+          List<Comment> retValue = [];
+
+          for (var element in query.docs) {
+            retValue.add(Comment.fromSnap(element));
+          }
+
+          return retValue;
+        },
+      ),
+    );
+  }
 
   postComment(String commentText) async {
     try {
@@ -45,6 +59,22 @@ class CommentController extends GetxController {
       });
     } catch (e) {
       Get.snackbar("Error commenting", e.toString());
+    }
+  }
+
+  likeComment(String id) async {
+    var uid = authController.user.uid;
+
+    DocumentSnapshot doc = await firestore.collection("videos").doc(_postId).collection("comments").doc(id).get();
+
+    if ((doc.data()! as dynamic)['likes'].contains(uid)) {
+      firestore.collection("videos").doc(_postId).collection("comments").doc(id).update({
+        "likes": FieldValue.arrayRemove([uid]),
+      });
+    } else {
+      firestore.collection("videos").doc(_postId).collection("comments").doc(id).update({
+        "likes": FieldValue.arrayUnion([uid]),
+      });
     }
   }
 }

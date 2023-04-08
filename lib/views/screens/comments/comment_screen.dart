@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/controller/comment_controller.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
+import 'package:timeago/timeago.dart' as tago;
 
 class CommentScreen extends StatefulWidget {
   const CommentScreen({super.key, required this.id});
@@ -36,26 +37,27 @@ class _CommentScreenState extends State<CommentScreen> {
               Expanded(
                 child: Obx(() {
                   return ListView.builder(
-                    itemCount: 5,
+                    itemCount: commentController.comments.length,
                     itemBuilder: (context, index) {
+                      final comment = commentController.comments[index];
                       return ListTile(
-                        leading: const CircleAvatar(
+                        leading: CircleAvatar(
                           backgroundColor: Colors.black,
-                          backgroundImage: NetworkImage("profile photo"),
+                          backgroundImage: NetworkImage(comment.profilePhoto),
                         ),
                         title: Row(
-                          children: const [
+                          children: [
                             Text(
-                              "username",
-                              style: TextStyle(
+                              "${comment.username}   ",
+                              style: const TextStyle(
                                 fontSize: 20,
                                 color: Colors.red,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
                             Text(
-                              "comment description",
-                              style: TextStyle(
+                              comment.comment,
+                              style: const TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500,
@@ -64,18 +66,18 @@ class _CommentScreenState extends State<CommentScreen> {
                           ],
                         ),
                         subtitle: Row(
-                          children: const [
+                          children: [
                             Text(
-                              "date",
-                              style: TextStyle(
+                              tago.format(comment.datePublished.toDate()),
+                              style: const TextStyle(
                                 fontSize: 12,
                                 color: Colors.white,
                               ),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text(
-                              "10 likes",
-                              style: TextStyle(
+                              "${comment.likes.length} likes",
+                              style: const TextStyle(
                                 fontSize: 12,
                                 color: Colors.white,
                               ),
@@ -83,9 +85,9 @@ class _CommentScreenState extends State<CommentScreen> {
                           ],
                         ),
                         trailing: IconButton(
-                          onPressed: () {},
+                          onPressed: () => commentController.likeComment(comment.id),
                           icon: const Icon(Icons.favorite, size: 25),
-                          color: Colors.red,
+                          color: comment.likes.contains(authController.user.uid) ? Colors.red : Colors.white,
                         ),
                       );
                     },
