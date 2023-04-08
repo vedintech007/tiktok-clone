@@ -8,12 +8,16 @@ class TextInputField extends StatelessWidget {
     this.obscureText,
     this.labelText,
     this.prefixIcon,
+    this.style,
+    this.inputBorderColor,
   });
 
   final TextEditingController? controller;
   final bool? obscureText;
   final String? labelText;
   final IconData? prefixIcon;
+  final TextStyle? style;
+  final Color? inputBorderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +25,7 @@ class TextInputField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText ?? false,
       obscuringCharacter: "*",
+      style: style,
       decoration: InputDecoration(
         labelText: labelText,
         prefixIcon: Icon(prefixIcon),
@@ -29,16 +34,16 @@ class TextInputField extends StatelessWidget {
         //
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),
-          borderSide: const BorderSide(
-            color: borderColor,
+          borderSide: BorderSide(
+            color: inputBorderColor ?? borderColor,
           ),
         ),
 
         //
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),
-          borderSide: const BorderSide(
-            color: borderColor,
+          borderSide: BorderSide(
+            color: inputBorderColor ?? borderColor,
           ),
         ),
       ),
