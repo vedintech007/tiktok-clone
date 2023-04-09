@@ -5,14 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/controller/auth_controller.dart';
 import 'package:tiktok_clone/views/screens/home/add_video.dart';
+import 'package:tiktok_clone/views/screens/search_screen/search_screen.dart';
 import 'package:tiktok_clone/views/screens/video/video_screen.dart';
 
 List pages = [
   VideoScreen(),
-  const Text("SearchScreen()"),
+  SearchScreen(),
   const AddVideoScreen(),
-  const Text('Messages Screen'),
-  const Text("ProfileScreen(uid: authController.user.uid)"),
+  const Center(child: Text('Messages Screen')),
+  const Center(child: Text("Profile Screen")),
 ];
 
 // COLORS

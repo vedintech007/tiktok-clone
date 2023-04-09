@@ -38,11 +38,10 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
 
   @override
   void dispose() {
-    super.dispose();
-
     _songController.dispose();
     controller.dispose();
     _captionController.dispose();
+    super.dispose();
   }
 
   @override
