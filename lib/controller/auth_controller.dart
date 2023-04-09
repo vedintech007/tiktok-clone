@@ -114,4 +114,9 @@ class AuthController extends GetxController {
       Get.snackbar("Invalid username or password.", e.toString());
     }
   }
+
+  // sign out
+  signOut() async {
+    await firebaseAuth.signOut();
+  }
 }

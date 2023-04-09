@@ -11,7 +11,7 @@ class SearchController extends GetxController {
   searchUsers(String typedUser) async {
     print("Searching in progress...");
     _searchedUser.bindStream(
-      firestore.collection("users").where('name', isGreaterThan: typedUser).snapshots().map(
+      firestore.collection("users").where('name', isEqualTo: typedUser).snapshots().map(
         (QuerySnapshot query) {
           List<User> retVal = [];
 

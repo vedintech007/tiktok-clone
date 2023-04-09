@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/controller/search_controller.dart';
 import 'package:tiktok_clone/models/user.dart';
+import 'package:tiktok_clone/views/screens/profile/profile_screen.dart';
 
 class SearchScreen extends StatelessWidget {
   SearchScreen({super.key});
@@ -43,7 +44,7 @@ class SearchScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     User user = searchController.seachedUsers[index];
                     return InkWell(
-                      onTap: () {},
+                      onTap: () => Get.to(() => ProfileScreen(uid: user.uid)),
                       child: ListTile(
                         leading: CircleAvatar(
                           backgroundImage: NetworkImage(user.profilePhoto),
