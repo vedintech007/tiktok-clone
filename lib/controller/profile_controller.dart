@@ -66,5 +66,29 @@ class ProfileController extends GetxController {
 
   followUser() async {
     var doc = await firestore.collection("users").doc(_uid.value).collection("followers").doc(authController.user.uid).get();
+
+    if (!doc.exists) {
+      // we add the user to the other users followers collection
+      await firestore.collection("users").doc(_uid.value).collection("followers").doc(authController.user.uid).set({});
+
+      // the for the user following we add the user it followed to the following collection
+      await firestore.collection("users").doc(authController.user.uid).collection("following").doc(_uid.value).set({});
+
+      // then update the _user map data
+      _user.value.update("followers", (value) => (int.parse(value) + 1).toString());
+    } else {
+      // we add the user to the other users followers collection
+      await firestore.collection("users").doc(_uid.value).collection("followers").doc(authController.user.uid).delete();
+
+      // the for the user following we add the user it followed to the following collection
+      await firestore.collection("users").doc(authController.user.uid).collection("following").doc(_uid.value).delete();
+
+      // then update the _user map data
+      _user.value.update("followers", (value) => (int.parse(value) - 1).toString());
+    }
+
+    _user.value.update("isFollowing", (value) => !value);
+
+    update();
   }
 }
